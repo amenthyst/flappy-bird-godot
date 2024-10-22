@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://5mo3dscqeuev"]
+
+[ext_resource type="FontFile" uid="uid://b16whw1pgvisc" path="res://FlappyBird.ttf" id="1_gwixx"]
+[ext_resource type="Script" path="res://UI/ui.gd" id="1_nkhvk"]
+[ext_resource type="Texture2D" uid="uid://bbjvmi73jibfx" path="res://UI/gameover.png" id="1_r0iuf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev3wh"]
+bg_color = Color(0.282353, 0.627451, 0.894118, 1)
+
+[node name="UI" type="CanvasGroup"]
+position = Vector2(-325, -500)
+rotation = 0.000653056
+script = ExtResource("1_nkhvk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 650.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+
+[node name="PointsDisplay" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_gwixx")
+theme_override_font_sizes/font_size = 100
+text = "0"
+
+[node name="GameOver" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/GameOver"]
+layout_mode = 2
+texture = ExtResource("1_r0iuf")
+
+[node name="Panel" type="Panel" parent="MarginContainer/GameOver"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_ev3wh")
+
+[node name="Button" type="Button" parent="MarginContainer/GameOver/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -37.5
+offset_right = 75.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.00644097
+theme_override_fonts/font = ExtResource("1_gwixx")
+theme_override_font_sizes/font_size = 70
+action_mode = 0
+text = "RESTART
+"
+
+[connection signal="pressed" from="MarginContainer/GameOver/Panel/Button" to="." method="_on_button_pressed"]

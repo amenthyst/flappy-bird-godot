@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://saxv8qbmc61h"]
+
+[ext_resource type="Script" path="res://Ground/ground.gd" id="1_v0uy3"]
+[ext_resource type="Texture2D" uid="uid://bd3kpymx6aulu" path="res://Ground/ground.png" id="2_a8b31"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x0iu"]
+size = Vector2(407.5, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cflr0"]
+size = Vector2(338, 11.5)
+
+[node name="Ground" type="Node2D"]
+position = Vector2(15, 175)
+script = ExtResource("1_v0uy3")
+
+[node name="Ground1" type="Area2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="GroundSprite1" type="Sprite2D" parent="Ground1"]
+texture = ExtResource("2_a8b31")
+
+[node name="Hitbox1" type="CollisionShape2D" parent="Ground1"]
+position = Vector2(35.25, -50)
+shape = SubResource("RectangleShape2D_3x0iu")
+
+[node name="Ground2" type="Area2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="GroundSprite2" type="Sprite2D" parent="Ground2"]
+position = Vector2(302, 85)
+texture = ExtResource("2_a8b31")
+offset = Vector2(33, -85)
+
+[node name="Hitbox2" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(335.667, -49.3333)
+shape = SubResource("RectangleShape2D_cflr0")
+
+[connection signal="body_entered" from="Ground1" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Ground2" to="." method="_on_body_entered"]
